@@ -181,7 +181,7 @@ _.extend(OplogHandle.prototype, {
     var self = this;
     // First, make sure that we're talking to the local database.
     var mongodbUri = Npm.require('mongodb-uri');
-    if (mongodbUri.parse(self._oplogUrl).database !== 'local') {
+    if (mongodbUri.parse(self._oplogUrl).database != 'local') {
       throw Error("$MONGO_OPLOG_URL must be set to the 'local' database of " +
                   "a Mongo replica set");
     }

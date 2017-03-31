@@ -64,7 +64,7 @@ function spawnMongod(mongodPath, port, dbPath, replSetName) {
     args.push('--nojournal');
   }
 
-  return child_process.spawn(mongodPath, args, {
+  return child_process.spawn("/usr/bin/env", ["mongod"].concat(args), {
     // Apparently in some contexts, Mongo crashes if your locale isn't set up
     // right. I wasn't able to reproduce it, but many people on #4019
     // were. Let's default a couple environment variables to English UTF-8 if
@@ -538,7 +538,7 @@ var launchMongo = function (options) {
         maybeReadyToTalk();
       }
 
-      if (/ \[initandlisten\] waiting for connections on port/.test(data)) {
+      if (/ \[.*?\] waiting for connections on port/.test(data)) {
         listening = true;
         maybeReadyToTalk();
       }

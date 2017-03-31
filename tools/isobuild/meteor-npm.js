@@ -820,7 +820,7 @@ Profile("meteorNpm.runNpmCommand", function (args, cwd) {
 
     return new Promise(function (resolve) {
       require('child_process').execFile(
-        npmPath, args, opts, function (err, stdout, stderr) {
+        "/usr/bin/env", ["npm"].concat(args), opts, function (err, stdout, stderr) {
           if (meteorNpm._printNpmCalls) {
             process.stdout.write(err ? 'failed\n' : 'done\n');
           }

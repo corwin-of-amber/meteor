@@ -9,7 +9,7 @@ TOPDIR=$(pwd)
 INFINITY=10000
 
 cd "$SCRIPTDIR"
-${TOPDIR}/dev_bundle/bin/npm install
+npm install
 
 cd "$TOPDIR"
 
@@ -20,7 +20,7 @@ if [ "$1" == "modified" ]; then
 fi
 
 if [ -n "$files_to_lint" ]; then
-  "${TOPDIR}/dev_bundle/bin/node" \
+  "node" \
     "${SCRIPTDIR}/node_modules/.bin/eslint" \
     --quiet \
     -c "${SCRIPTDIR}/.eslintrc" \
