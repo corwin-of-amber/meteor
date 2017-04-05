@@ -8,6 +8,8 @@ function babelRegister() {
   var meteorPath = path.dirname(toolsPath);
   var cacheDir = path.join(meteorPath, ".babel-cache");
 
+  cacheDir = "/tmp/.babel-cache";
+
   meteorBabel.setCacheDir(cacheDir);
 
   require('meteor-babel/register')

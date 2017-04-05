@@ -76,8 +76,8 @@ meteorNpm.updateDependencies = function (packageName,
     try {
       files.rename(packageNpmDir, newPackageNpmDir);
     } catch (e) {
-      if (e.code !== 'ENOENT') {
-        throw e;
+      if (e.code !== 'ENOENT' && files.exists(packageNpmDir)) {  //   (in some cases the file does not
+        throw e;                                 // exist yet some other code is returned, e.g. EROFS)
       }
       // It didn't exist, which is exactly what we wanted.
       return false;
