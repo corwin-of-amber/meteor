@@ -33,6 +33,8 @@ const METEOR_HOOK_LINE_REGEX = /.*meteor-hook.*/;
 
 export default function installGitHooks() {
 
+  return;
+
   if (!files.exists(hookDestination)) {
     // Don't do anything if the hook destination does not exist, eg.,
     // we are not running from a git clone.

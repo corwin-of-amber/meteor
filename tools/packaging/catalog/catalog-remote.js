@@ -271,7 +271,20 @@ _.extend(Db.prototype, {
     }
 
     Console.debug("Opening db file", dbFile);
-    return new sqlite3.Database(files.convertToOSPath(dbFile));
+
+    return new sqlite3.Database(this._copyIfNotWritable(files.convertToOSPath(dbFile)));
+  },
+
+  // Make a copy in /tmp if DB file is not writable
+  _copyIfNotWritable: function (dbFile) {
+    try {
+      var fs = require('fs');
+      fs.accessSync(dbFile, fs.constants.W_OK);
+    }
+    catch (e) {
+      files.copyFile(dbFile, dbFile = "/tmp/copy.db");
+    }
+    return dbFile;
   },
 
   // Runs a query synchronously, returning all rows

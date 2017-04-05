@@ -88,6 +88,10 @@ exports.getEnv = function (options) {
       env.NPM_CONFIG_CACHE = path.join(
         // If the user set NPM_CONFIG_PREFIX, respect that.
         env.NPM_CONFIG_PREFIX, ".npm");
+      try {
+        fs.accessSync(env.NPM_CONFIG_CACHE, fs.constants.W_OK);
+      }
+      catch (e) { env.NPM_CONFIG_CACHE = "/tmp/.npm"; }
     }
 
     if (env.METEOR_ALLOW_SUPERUSER) {

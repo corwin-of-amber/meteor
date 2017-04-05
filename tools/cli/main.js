@@ -303,7 +303,7 @@ export function dumpMeteorCommands() {
   const all = Object.create(null);
   Object.keys(commands).forEach(name => all[name] = true);
   const json = JSON.stringify(all, null, 2);
-  files.writeFile(meteorCommandsJsonPath, json + "\n");
+  //files.writeFile(meteorCommandsJsonPath, json + "\n");
   return all;
 }
 
